@@ -46,11 +46,11 @@
     function getImage(imageId) {
         const myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
-      
+    
         const requestOptions = {
-          method: "GET",
-          headers: myHeaders,
-          redirect: "follow"
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow"
         };
 
         fetch(`http://localhost:5000/images/${imageId}`, requestOptions)
@@ -58,22 +58,16 @@
                 if (!response.ok) {
                     throw new Error(response.statusText);
                 }
-                return response;
-            })
-            .then((result) => {
-                // Process the image here recvd in results preview
-                return result.blob();
+                return response.blob(); // Directly return the blob
             })
             .then((blob) => {
                 const imageURL = URL.createObjectURL(blob);
-                // Save the image or do something with the imageURL
-                console.log(imageURL);
+                // Assuming there's an img element with id 'displayedImage'
+                document.getElementById('displayedImage').src = imageURL;
             })
             .catch((error) => {
                 console.error("error", error);
-                // alert("Session expired or invalid. Please login again.");
-                // localStorage.removeItem("token");
-                // window.location.href = "login.html";
+                // Handle error, e.g., show a message or redirect
             });
     }
     getImage(1); // Call the function to execute the fetch operation
