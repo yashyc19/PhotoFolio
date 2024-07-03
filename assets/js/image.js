@@ -96,7 +96,6 @@
               <img src="${imageURL}" class="img-fluid" alt="">
               <div class="gallery-links d-flex align-items-center justify-content-center">
                 <a href="${imageURL}" title="${image.image_name}" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 <input class="form-check-input details-link" type="checkbox" value="${image.id}" ${checkstatus} id="flexCheckDefault">
               </div>
             </div>
