@@ -786,6 +786,14 @@ section,
   transition: 0.3s;
 }
 
+.gallery-item-list {
+  background-color: #059652;
+
+  padding: 10px;
+
+  border-radius: 10px;
+}
+
 .gallery .gallery-links {
   position: absolute;
   inset: 0;
