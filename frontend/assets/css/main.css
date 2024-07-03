@@ -576,6 +576,38 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Save buttons
+--------------------------------------------------------------*/
+.save-btn {
+  position: fixed;
+  bottom: 80px; /* Adjust based on positioning */
+  right: 20px; /* Adjust based on positioning */
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: var(--accent-color);
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 18px;
+  visibility: hidden;
+  opacity: 0;
+  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+}
+
+.save-btn:hover {
+  color: black;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+.save-btn.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
