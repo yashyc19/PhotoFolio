@@ -806,6 +806,17 @@ section,
 }
 
 /*--------------------------------------------------------------
+# Upload Section
+--------------------------------------------------------------*/
+#inputFile {
+  border-color: color-mix(in srgb, var(--accent-color) 90%, white 10%);
+}
+#uploadImage {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+/*--------------------------------------------------------------
 # Gallery Section
 --------------------------------------------------------------*/
 .gallery .gallery-item {

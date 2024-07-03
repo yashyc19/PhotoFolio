@@ -171,59 +171,38 @@
     }
     document.getElementById('saveSelectedBtn').addEventListener('click', saveSelectedImages);
 
+    // function to add images to the gallery
+    async function addImages() {
+        let inputFile = document.getElementById('inputFile');
+        // Check if exactly one file is selected
+        if (inputFile.files.length !== 1) {
+            alert("Please select exactly one file.");
+            console.error("Please select exactly one file.");
+            return; // Exit the function if not exactly one file is selected
+        }
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+        const formdata = new FormData();
+        formdata.append("image", inputFile.files[0]); // Use inputFile instead of fileInput
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: formdata, // Include the formdata in the request options
+            redirect: "follow"
+        };
 
+        try {
+            const response = await fetch("http://localhost:5000/images/uploadImage", requestOptions);
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+            const images = await response.json(); // Wait for the response to be converted to JSON
+            console.log(images);
+            return images; // Return the images for further processing
+        } catch (error) {
+            console.error("error", error);
+            return []; // Return an empty array in case of error
+        }
+    }
+    document.getElementById('uploadImage').addEventListener('click', addImages);
 })();
-
-
-// // Global variables
-// let selectedImages = []; // Stores the current list of selected image URLs or IDs
-// let lastSavedState = []; // Stores the last saved state of selected images for comparison
-
-// // Function to update selected images
-// function updateSelectedImages(imageId, isSelected) {
-//     if (isSelected) {
-//         // Add the image to the selectedImages array if it's not already included
-//         if (!selectedImages.includes(imageId)) {
-//             selectedImages.push(imageId);
-//         }
-//     } else {
-//         // Remove the image from the selectedImages array if it's deselected
-//         selectedImages = selectedImages.filter(id => id !== imageId);
-//     }
-//     checkForChanges();
-// }
-
-// // Function to check for changes and show/hide the save button
-// function checkForChanges() {
-//     // Convert arrays to strings to compare them easily
-//     if (JSON.stringify(selectedImages) !== JSON.stringify(lastSavedState)) {
-//         // Show the save button if there are changes
-//         document.getElementById('saveButton').style.display = 'block';
-//     } else {
-//         // Hide the save button if there are no changes
-//         document.getElementById('saveButton').style.display = 'none';
-//     }
-// }
-
-// // Save button click handler
-// function onSaveButtonClick() {
-//     // Perform the save operation here (e.g., send selectedImages to the server)
-
-//     // Update the last saved state to the current state after saving
-//     lastSavedState = [...selectedImages];
-
-//     // Hide the save button since the current state is now saved
-//     document.getElementById('saveButton').style.display = 'none';
-// }
-
-// // Example of attaching the updateSelectedImages function to a checkbox click event
-// // This assumes you have a mechanism to call this function when a checkbox is clicked, passing the image ID and selection state
-// document.getElementById('galleryContainer').addEventListener('click', function(event) {
-//     if (event.target.type === 'checkbox') {
-//         const imageId = event.target.getAttribute('data-image-id'); // Assuming each checkbox has a data-image-id attribute
-//         updateSelectedImages(imageId, event.target.checked);
-//     }
-// });
-
-// // Attach the onSaveButtonClick function to the save button click event
-// document.getElementById('saveButton').addEventListener('click', onSaveButtonClick);
