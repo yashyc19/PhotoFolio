@@ -3,7 +3,7 @@
 
     // Check if the user is logged in
     if (!localStorage.getItem("token")) {
-        window.location.href = "login.html"; // Redirect to login page if the user is not logged in
+        window.location.href = "/login"; // Redirect to login page if the user is not logged in
     }   else {
         const myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
@@ -16,7 +16,7 @@
         const response = await fetch("http://localhost:5000/check", requestOptions);
         if (!response.ok) {
             alert("You are not logged in. Please log in to continue.");
-            window.location.href = "login.html"; // Redirect to login page if the user is not logged in
+            window.location.href = "/login"; // Redirect to login page if the user is not logged in
         }
     }
 

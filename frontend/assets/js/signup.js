@@ -42,7 +42,7 @@
         .then((result) => {
             // localStorage.setItem("token", result.token);
             console.log(result);
-            window.location.href = "index.html";
+            window.location.href = "/";
         })
         .catch((error) => {
             console.error("Error:", error);

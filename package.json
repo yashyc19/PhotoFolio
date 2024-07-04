@@ -1,0 +1,14 @@
+{
+  "name": "photofolio",
+  "version": "1.0.0",
+  "description": "An admin page for a photoserver",
+  "main": "adminserver.js",
+  "scripts": {
+    "start": "node adminserver.js"
+  },
+  "author": "Yash Chaube",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
