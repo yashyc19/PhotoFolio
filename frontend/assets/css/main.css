@@ -814,6 +814,7 @@ section,
 #uploadImage {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
+  cursor: pointer;
 }
 
 /*--------------------------------------------------------------

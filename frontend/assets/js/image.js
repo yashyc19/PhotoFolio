@@ -198,6 +198,9 @@
             }
             const images = await response.json(); // Wait for the response to be converted to JSON
             console.log(images);
+            // clear the image info after upload
+            inputFile.value = "";
+            alert("Image uploaded successfully.");
             return images; // Return the images for further processing
         } catch (error) {
             console.error("error", error);
