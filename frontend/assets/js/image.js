@@ -25,6 +25,7 @@
     // ------------------------------
 
 
+    // ------------------------------
     /**
      * Get images from the server asynchronously.
      * 
@@ -59,6 +60,7 @@
         }
     }
 
+    // ------------------------------
     /**
      * Present the images in the gallery.
      * 
@@ -114,6 +116,17 @@
     presentImages(images);
 
     
+    // ------------------------------
+    /**
+     * Add a new image to the gallery.
+     * 
+     * This function allows the user to upload an image file, which is then sent to the server for processing.
+     * The function sets up the necessary headers for authorization, creates a FormData object to store the image file,
+     * and makes a POST request to upload the image. If the upload is successful, the gallery is updated with the new image.
+     * 
+     * @async
+     * @returns {Promise} A promise that resolves when the image is successfully uploaded and displayed in the gallery.
+     * */
     // function to check if the images are selected
     function getSelectedImages() {
         let galleryContainer = document.getElementById('gallery-item-list');
@@ -162,15 +175,42 @@
     }
     getSelectedImages();
 
+    // ------------------------------
     // function to save selected images
     function saveSelectedImages() {
         // save the selected images to local storage
         localStorage.setItem('selectedImages', JSON.stringify(selectedImages));
+
+        // make the api call and save this to the server
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+        myHeaders.append("Content-Type", "application/json");
+        const raw = JSON.stringify(selectedImages);
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+
+        fetch("http://localhost:5000/images/saveSelected", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                alert("Selected images saved successfully.");
+            })
+            .catch(error => {
+                console.error("error", error);
+                alert("Error saving selected images. Please try again.");
+            });
+
         // Hide the save button since the current state is now saved
         document.getElementById('saveSelectedBtn').classList.remove('active');
     }
     document.getElementById('saveSelectedBtn').addEventListener('click', saveSelectedImages);
 
+
+    // ------------------------------
     // function to add images to the gallery
     async function addImages() {
         let inputFile = document.getElementById('inputFile');
