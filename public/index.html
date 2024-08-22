@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Admin Portal</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<style>
+		.container {
+			max-width: 500px;
+			margin-top: 50px;
+		}
+		.form-container {
+			padding: 20px;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			background-color: #f9f9f9;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="form-container">
+			<h2 class="text-center">Admin Portal</h2>
+			<form id="auth-form">
+				<div class="form-group">
+					<label for="email">Email address</label>
+					<input type="email" class="form-control" id="email" required>
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" class="form-control" id="password" required>
+				</div>
+				<div class="form-group" id="folder-group" style="display: none;">
+					<label for="folder">Folder Name</label>
+					<input type="text" class="form-control" id="folder">
+				</div>
+				<button type="submit" class="btn btn-primary btn-block">Login</button>
+				<button type="button" class="btn btn-secondary btn-block" id="toggle-auth">Sign Up</button>
+			</form>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="js/scripts.js"></script>
+</body>
+</html>
